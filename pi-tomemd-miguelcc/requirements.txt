@@ -1,0 +1,6 @@
+Django>=3.0,<4.0
+django-crispy-forms
+pandas
+pendulum
+requests
+matplotlib

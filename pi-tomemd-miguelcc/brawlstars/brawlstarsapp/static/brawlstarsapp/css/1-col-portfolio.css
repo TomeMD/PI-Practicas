@@ -1,0 +1,79 @@
+/*!
+ * Start Bootstrap - 1 Col Portfolio (https://startbootstrap.com/template-overviews/1-col-portfolio)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-1-col-portfolio/blob/master/LICENSE)
+ */
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  padding-top: 54px;
+  color: #fff;
+  background-color: #130F05;
+  margin: 0;
+  margin-bottom: 200px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+}
+
+.bg-primary {
+  background-color:  #FAB000 !important;
+}
+
+.btn-primary {
+  background-color: #130F05;
+}
+
+.btn-login {
+  color: #fff;
+  background-color: #FAB000;
+  border-color: #FAB000;
+}
+
+.btn-login:hover {
+  color: #fff;
+  background-color: #faaf00de;
+  border-color: #faaf00b9;
+}
+
+.btn-login:focus, .btn-login.focus {
+  box-shadow: 0 0 0 0.2rem rgba(250, 176, 0, 0.5);
+}
+
+.modal {
+  color: #130F05;
+}
+
+.modal-content {
+  color: #130F05;
+  background-color: #FAB000;
+}
+
+.nav-log {
+  color: #130F05;
+}
+
+.pagination {
+  margin-bottom: 15px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+    color: #fff;
+    background-color: #130F05;
+    margin: 0;
+    margin-bottom: 200px;
+  }
+
+}
+
+

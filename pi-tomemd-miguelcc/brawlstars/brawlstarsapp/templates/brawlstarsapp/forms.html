@@ -1,0 +1,17 @@
+<!-- Formularios de busqueda -->
+{% extends "brawlstarsapp/base.html" %} {%block content%} 
+<!-- Youtube form -->
+{% if ytform %}
+<p>
+  Input the name from your favorite Brawl Stars youtuber and we will show you their content
+</p>
+<p>
+  {% load crispy_forms_tags %} {% crispy ytform ytform.helper %}
+</p>
+{% if video %}
+<iframe width="420" height="345" src="{{video}}"> </iframe>
+{% endif %} {% if error %}
+<h1>{{ error }}</h1>
+{% endif %} {% endif %}
+
+{% endblock %}

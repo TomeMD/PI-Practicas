@@ -1,0 +1,37 @@
+{% extends "brawlstarsapp/base.html" %} {%block content%} 
+{% if errMsg %}
+    <h6> {{ errMsg }}</h6>
+{% endif %}
+{% if clubInfo %}
+    <div class="row">
+        <div class="col-md-5">
+            <h1 class="my-4" style="color:#FAB000;">{{ clubInfo.name }} </h1>
+            <h5>TAG: </h5>
+            <h5>TYPE: </h5>
+            <h5>REQUIRED TROPHIES: </h5>
+            <h5>TROPHIES: </h5>
+        </div>
+        <div class="col-md-3">
+            <br><br><br><br>
+            <h5>{{ clubInfo.tag}}</h5>
+            <h5>{{ clubInfo.type }}</h5>
+            <h5>{{ clubInfo.reqTrophies }}</h5>
+            <h5>{{ clubInfo.trophies }}</h5>
+        </div>
+    </div>
+    <br><br>
+    <div class="row"> 
+        {% if members %}
+            <h5> Members </h5>
+            <ul> 
+                {% for member in members %}
+                    <li><a href="{% url 'playerTag' member.tag %}" style="color:#FAB000;">{{ member.name }}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h6>No member information in the local database, please try again later.</h6>
+        {% endif %}
+    </div>
+        
+{% endif %}
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "brawlstarsapp/base.html" %} {%block content%} 
+{% if request.user.is_authenticated %}
+
+    {% if errMsg %}
+        <p> {{ errMsg }}</p>
+    {% endif %}
+    
+    {% if playerInfo %}
+
+        <div class="row">
+            <div class="col-md-5">
+                <h1 class="my-4" style="color:#FAB000;">{{ playerInfo.name }} </h1>
+        
+                <h5>TAG: </h5>
+                <h5>TROPHIES: </h5>
+                <h5>SOLO VICTORIES: </h5>
+                <h5>DUO VICTORIES: </h5>
+                <h5>3V3 VICTORIES: </h5>
+            </div>
+            <div class="col-md-3">
+                <br><br><br><br>
+                <h5>{{ playerInfo.tag }}</h5>
+                <h5>{{ playerInfo.trophies }}</h5>
+                <h5>{{ playerInfo.soloVictories}}</h5>
+                <h5>{{ playerInfo.duoVictories}}</h5>
+                <h5>{{ playerInfo.3vs3Victories}}</h5>
+            </div>
+            <div class="col-md-3">
+                <br><br><br><br>
+                <!--Historia de batalla-->
+                <h4 style="color:#FAB000;"> Latest 25 battles </h4>
+                <ul> 
+                    {% if battlelog %}
+                        {% for battle in battlelog %}
+                            <li> {{ battle.dateTime }} </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <br><br>
+        {% if stats %}
+        <!--Estadísticas avanzadas-->
+        <div class="row">
+            <div class="col-md-2">
+                <a href="{% url 'playerTag' player_id=playerInfo.tag %}"><button type="button" class="btn btn-lg btn-login">Hide advanced statistics</button></a>
+            </div>
+        </div>
+        <br><br>
+        <h1 style="color:#FAB000;"> Advanced statistics </h1>
+        <br>
+        <div class="row">
+            <div class="col-md-5">
+                <h5>Nº STAR PLAYER: </h5>
+                <h5>% STAR PLAYER: </h5>
+            </div>
+            <div class="col-md-3">
+                <h5> {{ starPlayerBattles }} </h5>
+                <h5> {{ starPlayerRate }}% </h5>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-5">
+                <!--Win rate por brawler-->
+                <h4 style="color:#FAB000;"> Win rate by brawler </h4>
+                <ul> 
+                    {% if winRates %}
+                        {% for brawler in winRates %}
+                            <li> {{ brawler.name }}: {{ brawler.winrate }}% </li>
+                        {% endfor %}
+                        <br><br>
+                        {% if winsFig %}
+                        <img src="data:image/png;base64,{{ winsFig }}">
+                        {% endif %}
+                    {% endif %}
+                    
+                </ul>
+            </div>
+            <div class="col-md-5">
+                <!--Pick rate por brawler-->
+                <h4 style="color:#FAB000;"> Pick rate by brawler </h4>
+                <ul> 
+                    {% if pickRates %}
+                        {% for brawler in pickRates %}
+                            <li> {{ brawler.name }}: {{ brawler.pickrate }}% </li>
+                        {% endfor %}
+                        <br><br>
+                        {% if picksFig %}
+                        <img src="data:image/png;base64,{{ picksFig }}">
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col-md-2">
+                <a href="{% url 'playerTag' player_id=playerInfo.tag %}?stats=yes"><button type="button" class="btn btn-lg btn-login">Show advanced statistics</button></a>
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+{% else %}
+        <h1>You must be logged in to view a player's profile</h1>
+{% endif %}
+{% endblock %}

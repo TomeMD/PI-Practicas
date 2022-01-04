@@ -1,0 +1,1 @@
+brawlToken= '<paste-your-token>'

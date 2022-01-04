@@ -1,0 +1,18 @@
+{% extends "brawlstarsapp/base.html" %} {%block content%} 
+{% if warnMsg %}
+    <h6> {{ warnMsg }}</h6>
+{% endif %}
+<div class="container">
+    <h1 class="my-4" style="color:#FAB000;">Best players</h1>
+</div>
+
+{% if playersInfo %}
+    <ul>
+    {% for player in playersInfo %}
+    <li><a href="{% url 'playerTag' player.tag %}" style="color:white;">{{ player.name }}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>{{ errMsg }}</p>
+{% endif %}
+{% endblock %}

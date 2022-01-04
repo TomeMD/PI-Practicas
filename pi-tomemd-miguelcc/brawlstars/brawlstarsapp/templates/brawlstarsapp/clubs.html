@@ -1,0 +1,18 @@
+{% extends "brawlstarsapp/base.html" %} {%block content%} 
+{% if warnMsg %}
+    <h6> {{ warnMsg }}</h6>
+{% endif %}
+<div class="container">
+    <h1 class="my-4" style="color:#FAB000;">Best clubs</h1>
+</div>
+
+{% if clubsInfo %}
+    <ul>
+    {% for club in clubsInfo %}
+    <li><a href="{% url 'clubTag' club.tag %}" style="color:white;">{{ club.name }}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>{{ errMsg }}</p>
+{% endif %}
+{% endblock %}

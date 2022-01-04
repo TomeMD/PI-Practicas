@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es-es">
+  {% load static %}
+  
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>iLoveBrawl</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'brawlstarsapp/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'brawlstarsapp/css/1-col-portfolio.css'%}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">iLoveBrawl</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <span class="sr-only">(current)</span>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index' %}">Profile
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'players' %}">Best players</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'clubs' %}">Best clubs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'youtube' %}">About Brawl Stars</a>
+            </li>
+            {% if user.is_authenticated %}
+             <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout_view' %}?next={{ request.path }}">User {{request.user.username}} logout</a>
+             </li>
+            {% endif %}
+        
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Page Heading -->
+    
+      <h1 class="my-4">
+        <small></small>
+      </h1>
+    
+      {% block content %}{% endblock %}
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-primary bottom">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; iLoveBrawl 2021</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static "brawlstarsapp/vendor/jquery/jquery.min.js" %}"></script>
+    <script src="{% static "brawlstarsapp/vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+
+  </body>
+
+</html>

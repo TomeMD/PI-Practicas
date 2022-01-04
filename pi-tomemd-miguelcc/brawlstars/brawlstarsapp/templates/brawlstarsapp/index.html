@@ -1,0 +1,73 @@
+{% extends "brawlstarsapp/base.html" %} {%block content%} 
+{% load static %}
+<br><br>
+<div class="container">
+<div class="row">
+
+
+<div class="col-md-5">
+    {% if request.user.is_authenticated %}
+    <form id="tagForm" onsubmit="search(); return false;">
+        <input id="playerTag" type="text" name="playerTag" required placeholder="Player tag..." >
+        <input id="submitButton" type="submit" value="Search">
+    </form>
+    
+    {% else %}
+    {{loginError}}
+    <BR>
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-lg btn-login" data-toggle="modal" data-target="#myModal">Log in</button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a class="nav-link nav-log" href="#loginTab" aria-controls="loginTab" role="tab" data-toggle="tab">Log in</a>
+                            </li>
+                            <li role="presentation">
+                                <a class="nav-link nav-log" href="#signupTab" aria-controls="signupTab" role="tab" data-toggle="tab">Sign up</a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="loginTab">
+                                <p>{% load crispy_forms_tags %} {% crispy login_form login_form.helper %}</p>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="signupTab">
+                                <p>{% load crispy_forms_tags %} {% crispy signup_form signup_form.helper %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<div class="col-md-5">
+    How to find your player tag
+    <iframe src="https://drive.google.com/file/d/19OkNhDmtOOixXxJoMFlAuabZ3faakJib/preview" width="640" height="360"></iframe>
+</div>
+
+</div>
+</div>
+
+
+
+<script>
+    function search() {
+        input = document.getElementById('playerTag').value;
+        input = input.replace("#","");
+        location.href='tag/' + input.slice(0);
+    }
+</script>
+{% endblock %}
